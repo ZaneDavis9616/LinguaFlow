@@ -8,22 +8,29 @@
     "build": "tsc",
     "lint": "eslint src/ --ext .ts",
     "lint:fix": "eslint src/ --ext .ts --fix",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "start": "npm run build && node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "download-audio": "node scripts/download-test-audio.js",
+    "test-transcription": "npm run build && node scripts/test-transcription.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^30.0.0",
+    "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.0.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.0",
     "typescript": "^5.8.3"
   },
   "dependencies": {
     "@google-cloud/speech": "^7.1.0",
+    "dotenv": "^16.0.0",
     "ytdl-core": "^4.11.5"
   }
 }
