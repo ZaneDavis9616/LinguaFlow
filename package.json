@@ -1,0 +1,23 @@
+{
+  "name": "linguaflow",
+  "version": "1.0.0",
+  "description": "LinguaFlow 是一款基于第一性原理设计的沉浸式语言学习平台。",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@google-cloud/speech": "^7.1.0",
+    "ytdl-core": "^4.11.5"
+  }
+}
