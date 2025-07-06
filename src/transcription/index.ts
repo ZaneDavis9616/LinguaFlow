@@ -32,6 +32,8 @@ export class TranscriptionEngine {
         .filter(Boolean)
         .join('\n') || '';
 
+      console.log('Raw transcription:', transcription);
+
       const segments: EnrichedTranscript['segments'] = [];
       let segmentIdCounter = 0;
 

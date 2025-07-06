@@ -1,5 +1,4 @@
 import { TranscriptionEngine } from './index';
-import { EnrichedTranscript } from '../types';
 import { SpeechClient } from '@google-cloud/speech';
 
 jest.mock('@google-cloud/speech'); // Mock the SpeechClient

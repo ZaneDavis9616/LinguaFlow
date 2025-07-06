@@ -15,23 +15,20 @@ async function main() {
     console.log('💡 提示: 设置环境变量后可体验真实的语音转写功能\n');
   }
 
-  // 测试真实音频转写（如果环境配置正确）
-  if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
-    await testRealTranscription();
-  }
-
-  const source = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // Example YouTube URL
-
-  // 1. Media Ingestion (still using mock data for now)
+  // 完整流程：YouTube下载→音频转写→学习界面
+  const source = 'https://www.youtube.com/watch?v=jNQXAC9IVRw'; // YouTube 第一个视频，测试成功
   console.log('📥 开始媒体摄入...');
   const mediaProvider = createMediaProvider(source);
-  await mediaProvider.ingest(source); // Just call ingest to simulate the process
+  const { transcript: mediaTranscript, audioBuffer } = await mediaProvider.ingest(source);
 
-  // 2. Content Transcription (using mock data for now)
-  console.log('🎤 开始内容转写...');
-  const transcriptionEngine = new TranscriptionEngine();
-  // Reverting to mock data for now to unblock development
-  const transcript = await transcriptionEngine.transcribe(Buffer.from('mock audio data'));
+  let transcript = mediaTranscript;
+  if (audioBuffer && process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+    console.log('🎤 开始内容转写...');
+    const transcriptionEngine = new TranscriptionEngine();
+    transcript = await transcriptionEngine.transcribe(audioBuffer);
+  } else {
+    console.log('⚠️  未获取到音频 Buffer 或未配置 Google Cloud，使用 mock 数据');
+  }
 
   // 3. Interactive Learning
   console.log('🎓 启动学习界面...');
